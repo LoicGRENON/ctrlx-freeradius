@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.boschrexroth.com/ctrlx-automation/ctrlx-core/apps/package-manifest/package-manifest.v1.6.schema.json",
+  "version": "0.0.1",
+  "id": "ctrlx-freeradius",
+  "scopes-declaration": [
+    {
+      "identifier": "ctrlx-freeradius.web",
+      "name": "FreeRADIUS Web UI",
+      "description": "Gestion des utilisateurs RADIUS et de la configuration",
+      "scopes": [
+        {
+          "identifier": "ctrlx-freeradius.web.rw",
+          "name": "Lecture et écriture",
+          "description": "Gérer les utilisateurs RADIUS et la configuration"
+        }
+      ]
+    }
+  ],
+  "services": {
+    "proxyMapping": [
+      {
+        "name": "ctrlx-freeradius.web",
+        "url": "/freeradius",
+        "binding": "unix://{$SNAP_DATA}/package-run/ctrlx-freeradius/web.sock",
+        "restricted": []
+      }
+    ]
+  },
+  "menus": {
+    "sidebar": [
+      {
+        "id": "ctrlx-freeradius",
+        "title": "FreeRADIUS",
+        "icon": "bosch-ic-security",
+        "items": [
+          {
+            "id": "ctrlx-freeradius-main",
+            "title": "FreeRADIUS",
+            "target": "embedded",
+            "link": "/freeradius?token=${bearertoken}",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "settings": [],
+    "overview": []
+  }
+}
